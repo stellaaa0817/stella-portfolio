@@ -77,6 +77,14 @@ body{font-weight:400}.logo,.nav nav,.nav-cta,.pill,.stella-eyebrow,.section-labe
 .stella-description .hero-closing-line{color:var(--blue)}
 @media(min-width:701px){.stella-hero{height:auto;min-height:max(100svh,920px)}.stella-hero-copy{top:clamp(155px,17%,205px)}.stella-description{font-size:clamp(13px,1.05vw,15px);line-height:1.48}.stella-description p{margin-bottom:10px}.hero-actions{margin-top:16px}}
 @media(max-width:700px){.stella-hero{height:1040px;min-height:1040px}.stella-description{max-width:310px}.stella-description p{margin-bottom:10px}}
+@media(max-width:700px){
+  .stella-hero{display:flex;flex-direction:column;height:auto;min-height:0}
+  .stella-hero-copy{position:relative;top:auto;left:auto;width:100%;padding:120px 20px 0}
+  .stella-description{max-width:100%}
+  .stella-scene{position:relative;inset:auto;flex:none;height:clamp(400px,90vw,520px);margin-top:18px}
+  .stella-stella-scene{top:0;right:-15%;width:130%;height:100%;object-fit:contain}
+  .stella-badge-stage{right:-115px;bottom:5px}
+}
 .projects{grid-template-columns:repeat(2,minmax(0,1fr))}
 .project .visual,.project.wide .visual{aspect-ratio:1;height:auto}
 @media(max-width:650px){.projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 12px}.project .visual,.project.wide .visual{aspect-ratio:1;border-radius:18px}.project .badge{top:9px;left:9px;max-width:calc(100% - 18px);padding:5px 7px;font-size:6px;line-height:1.25}.project .arrow{right:9px;bottom:9px;width:31px;height:31px}.project .arrow img{width:17px;height:17px}.project-info{padding:12px 2px}.project-info h3{font-size:clamp(17px,4.6vw,24px)}.project-info small{font-size:8px}.project-info p{font-size:10px;line-height:1.4}}
