@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Video Preview · Stella’s Portfolio</title>
+  <style>
+    :root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#101f4b;color:#fff}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;padding:clamp(20px,4vw,55px);background:radial-gradient(circle at 80% 8%,#315bca55,transparent 38%),#101f4b}
+    main{max-width:1250px;margin:auto}a{color:inherit}.back{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-size:14px;padding:12px 16px;border:1px solid #ffffff66;border-radius:30px}.back:hover{background:#ffffff20}
+    header{margin:35px 0 22px}small{display:block;color:#a9c1ff;font-size:12px;letter-spacing:.13em;text-transform:uppercase}h1{font-size:clamp(28px,4vw,54px);line-height:1.08;margin:12px 0}p{color:#bdcbed;line-height:1.6}
+    video{display:block;width:100%;max-height:75vh;background:#060b1e;border:1px solid #ffffff35;border-radius:20px;object-fit:contain}
+    .hint{font-size:13px}.fallback{display:inline-block;margin-top:12px;color:#b7d4ff}
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html#work">← Back to portfolio / 返回作品集</a>
+    <header><small>Original video · 原片预览</small><h1 id="video-title">Video Preview</h1><p id="video-description"></p></header>
+    <video id="player" controls preload="none" playsinline aria-label="Video preview"></video>
+    <p class="hint">The video starts loading when you press play. 播放时才会开始加载视频。</p>
+    <a class="fallback" id="open-file" href="#">Open original video file / 打开原视频文件 ↗</a>
+  </main>
+  <script>
+    const videos = {
+      sinoalta:{title:'Sinoalta Factory Introduction',description:'Sinoalta 工厂介绍短视频',source:'assets/videos/sinoalta-factory-introduction.m4v',poster:'assets/posters/sinoalta-factory-introduction.jpg'},
+      jaspercnc:{title:'JasperCNC Finished Video',description:'JasperCNC 完整成片',source:'assets/videos/jaspercnc-finished-video-web.m4v',poster:'assets/posters/jaspercnc-finished-video.jpg'},
+      ceramic:{title:'Ceramic Restoration Table · AI Concept Video',description:'Sinoalta 陶瓷修复台 · AI 概念视频',source:'assets/videos/sinoalta-ceramic-restoration-ai-concept.m4v',poster:'assets/posters/sinoalta-ceramic-restoration-ai-concept.jpg'},
+      'petersburg-feed':{title:'Craft Beer · Feed Advertising',description:'精酿啤酒信息流广告短片',source:'assets/videos/petersburg-restaurant-feed.mp4',poster:'assets/posters/petersburg-restaurant-feed.jpg'},
+      'restaurant-promotion':{title:'Craft Beer · Brand Promotion',description:'精酿啤酒品牌宣传短片',source:'assets/videos/restaurant-brand-promotion.mp4',poster:'assets/posters/restaurant-brand-promotion.jpg'},
+      'petersburg-discovery':{title:'Craft Beer · Venue Discovery',description:'彼得堡精酿啤酒 · 探店种草短片',source:'assets/videos/petersburg-restaurant-discovery.mp4',poster:'assets/posters/petersburg-restaurant-discovery.jpg'}
+    };
+    const selected = videos[new URLSearchParams(location.search).get('v')];
+    if (selected) {
+      document.title = `${selected.title} · Stella’s Portfolio`;
+      document.querySelector('#video-title').textContent = selected.title;
+      document.querySelector('#video-description').textContent = selected.description;
+      document.querySelector('#player').src = selected.source;
+      document.querySelector('#player').poster = selected.poster;
+      document.querySelector('#open-file').href = selected.source;
+    } else {
+      document.querySelector('#video-title').textContent = 'Video not found / 未找到视频';
+      document.querySelector('#player').remove();
+      document.querySelector('#open-file').remove();
+    }
+  </script>
+</body>
+</html>

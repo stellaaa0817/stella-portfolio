@@ -1,0 +1,9 @@
+Use case: stylized-concept
+Asset type: portfolio project cover, landscape 3:2
+Primary request: A polished playful editorial 3D sculpture of floating translucent glass browser windows, chrome frames, cobalt components, lemon yellow small spheres.
+Scene/backdrop: pale blue seamless studio background.
+Composition/framing: asymmetric sculptural arrangement, overlapping floating browser-like rounded rectangular panes at dynamic angles with strong perspective and depth, clean spacious framing.
+Lighting/mood: premium soft studio lighting, crisp reflections, elegant playful digital design aesthetic.
+Color palette: navy #172657, electric blue #355cff, lemon yellow #ffe65b, small coral accents.
+Materials/textures: thick translucent optical glass, polished chrome, glossy cobalt ceramic, beautiful realistic refractions and reflections.
+Constraints: one 3:2 landscape raster artwork. No text, no logos, no real UI screenshots, no people, no watermark.

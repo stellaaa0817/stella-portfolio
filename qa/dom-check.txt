@@ -1,0 +1,2 @@
+PASS: 5 project dialogs; creative filters; 13 tools; contact email; navigation; 50 local assets. Native layout/hover rendering is not tested by this DOM check.
+PASS: Chinese navigation, contact copy, and dynamically rendered project details.

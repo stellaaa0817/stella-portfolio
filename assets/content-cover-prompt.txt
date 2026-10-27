@@ -1,0 +1,9 @@
+Use case: stylized-concept
+Asset type: wide horizontal portfolio project cover, 2:1 landscape
+Primary request: playful premium 3D production sculpture with floating glossy video frames, a chrome play-button sculpture, electric cobalt and lemon yellow objects, clear glass layers.
+Scene/backdrop: pale peach and pale blue pastel studio backdrop.
+Composition/framing: strong left-to-right sculptural spatial arrangement across wide frame, balanced intentional negative space, sophisticated art-directed close studio composition suitable for a horizontal portfolio card.
+Lighting/mood: coral and orange dominant lighting accents, soft realistic studio shadows, polished and playful.
+Color palette: midnight navy #172657, electric cobalt #355cff, lemon yellow #ffe65b, coral and peach.
+Materials/textures: glossy lacquer, mirror chrome, transparent glass with convincing refraction.
+Constraints: no readable text, no logos, no people, no watermark, no advertising claims or results. Generate one actual raster image.
