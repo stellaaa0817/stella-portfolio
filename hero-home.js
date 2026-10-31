@@ -1,5 +1,11 @@
 const badge = document.querySelector('.stella-hero .stella-badge');
 const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)');
+const backPortrait = badge.querySelector('.stella-happy');
+function loadBackPortrait() {
+  if (!backPortrait?.dataset.src) return;
+  backPortrait.src = backPortrait.dataset.src;
+  delete backPortrait.dataset.src;
+}
 
 function setFlipped(flipped) {
   badge.classList.toggle('stella-is-flipped', flipped);
@@ -8,9 +14,13 @@ function setFlipped(flipped) {
 }
 
 badge.addEventListener('click', () => {
-  if (coarsePointer.matches) setFlipped(!badge.classList.contains('stella-is-flipped'));
+  if (coarsePointer.matches) {
+    loadBackPortrait();
+    setFlipped(!badge.classList.contains('stella-is-flipped'));
+  }
 });
+badge.addEventListener('pointerenter', loadBackPortrait, {once: true});
+badge.addEventListener('focus', loadBackPortrait, {once: true});
 badge.addEventListener('pointerleave', () => {
   if (!coarsePointer.matches) setFlipped(false);
 });
-
