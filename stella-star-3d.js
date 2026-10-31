@@ -24,7 +24,7 @@
       const theta=u*Math.PI*2,phi=v*Math.PI;
       const r=Math.pow(Math.pow(Math.abs(Math.cos(theta)),0.76)+Math.pow(Math.abs(Math.sin(theta)),0.76),-1/0.76);
       return [r*Math.sin(phi)*Math.cos(theta),1.08*r*Math.sin(phi)*Math.sin(theta),0.34*Math.cos(phi)];
-    },128,48,[0.79,0.86,0.99],0.88);
+    },64,24,[0.79,0.86,0.99],0.88);
     const orbit = p => {
       const rx=1.03,rz=-0.36;
       const y=p[1]*Math.cos(rx)-p[2]*Math.sin(rx),z=p[1]*Math.sin(rx)+p[2]*Math.cos(rx);
@@ -33,12 +33,12 @@
     surface((u,v) => {
       const a=u*Math.PI*2,b=v*Math.PI*2,r=1.13+0.045*Math.cos(b);
       return orbit([r*Math.cos(a),r*Math.sin(a),0.045*Math.sin(b)]);
-    },112,16,[1,0.78,0.32],0.85);
+    },64,12,[1,0.78,0.32],0.85);
     const satellites=[[-0.94,0.64,0.25,0.105,[1,0.77,0.03]], [0.88,0.70,-0.12,0.075,[0.025,0.16,1]], [0.96,-0.65,0.10,0.08,[1,0.28,0.08]]];
     for(const [x,y,z,r,color] of satellites)surface((u,v)=>{
       const a=u*Math.PI*2,b=v*Math.PI;
       return [x+r*Math.cos(a)*Math.sin(b),y+r*Math.sin(a)*Math.sin(b),z+r*Math.cos(b)];
-    },24,16,color,0.25);
+    },16,12,color,0.25);
     return new Float32Array(vertices);
   }
   if(typeof module !== 'undefined' && module.exports) module.exports={buildGeometry};
@@ -108,13 +108,15 @@
     }
     const rotation=gl.getUniformLocation(program,'uRotation');
     const motion=matchMedia('(prefers-reduced-motion: reduce)');
-    let last=0,angle=0.35,frame=0;
+    let last=0,painted=0,angle=0.35,frame=0;
     gl.enable(gl.DEPTH_TEST);gl.clearColor(0,0,0,0);
     function draw(time=0){
       frame=0;
       if(last&&!motion.matches)angle+=Math.min(time-last,50)*Math.PI*2/24000;
       last=time;
-      const size=Math.max(1,Math.round(canvas.clientWidth*Math.min(devicePixelRatio||1,3)));
+      if(painted&&time-painted<32&&!motion.matches){frame=requestAnimationFrame(draw);return;}
+      painted=time;
+      const size=Math.max(1,Math.round(canvas.clientWidth*Math.min(devicePixelRatio||1,2)));
       if(canvas.width!==size||canvas.height!==size){canvas.width=size;canvas.height=size;gl.viewport(0,0,size,size);}
       const c=Math.cos(angle),s=Math.sin(angle),pitch=0.12,cp=Math.cos(pitch),sp=Math.sin(pitch);
       // Column-major Rx(pitch) * Ry(angle): the geometry turns, the canvas does not.
@@ -124,7 +126,7 @@
       holder.classList.add('is-rendered');
       if(!motion.matches&&!document.hidden)frame=requestAnimationFrame(draw);
     }
-    function resume(){cancelAnimationFrame(frame);last=0;if(!document.hidden)draw();}
+    function resume(){cancelAnimationFrame(frame);last=0;painted=0;if(!document.hidden)draw();}
     document.addEventListener('visibilitychange',resume);
     motion.addEventListener('change',resume);
     new ResizeObserver(()=>{if(motion.matches||!frame)resume();}).observe(canvas);
